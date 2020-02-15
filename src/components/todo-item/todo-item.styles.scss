@@ -1,0 +1,22 @@
+.todo-item {
+  margin-bottom: 16px;
+  width: 800px;
+  height: 64px;
+}
+
+.ant-card-body {
+  display: flex;
+  padding: 20px 16px;
+
+  .todo-item-checkbox {
+    margin-right: 16px;
+  }
+
+  .todo-item-buttons {
+    margin-left: auto;
+  }
+}
+
+.completed {
+  text-decoration: line-through;
+}

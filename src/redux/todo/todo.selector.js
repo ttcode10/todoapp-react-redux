@@ -12,4 +12,7 @@ export const selectDisplayInputField = createSelector(
   todo => todo.isNew
 );
 
-// export const select
+export const selectItemToEdit = createSelector(
+  [selectTodoItems],
+  todoItems => todoItems.find(todoItem => todoItem.isEdit === true)
+);

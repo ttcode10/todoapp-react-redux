@@ -1,35 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
-import { selectDisplayInputField } from './../../redux/todo/todo.selector';
-import { fireInputField } from './../../redux/todo/todo.action';
+import { fireNewInput } from './../../redux/input/input.action';
 
 import './homepage.styles.scss';
 import TodoList from './../../components/todo-list/todo-list.component';
-import TodoInput from './../../components/todo-input/todo-input.component';
 import { AddButton } from './../../components/button/button.component';
 
-const HomePage = ({displayInputField, fireInputField}) => {
-
+const HomePage = ({displayNewInput, fireNewInput}) => {
+  console.log(displayNewInput);
   return (
     <div className='homepage' >
       <TodoList />
-      {
-        displayInputField ? <TodoInput displayInputField={displayInputField} /> : null
-      }
-      <AddButton onClick={() => fireInputField()}/>
+      <AddButton onClick={() => fireNewInput()}/>
     </div>
   )
 };
 
-const mapStateToProps = createStructuredSelector({
-  displayInputField: selectDisplayInputField
-});
-
 const mapDispatchToProps = dispatch => ({
-  fireInputField: () => dispatch(fireInputField())
+  fireNewInput: () => dispatch(fireNewInput())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
-// export default connect(null, mapDispatchToProps)(HomePage);
+export default connect(null, mapDispatchToProps)(HomePage);

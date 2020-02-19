@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { addItem, editItem, closeInputField } from './../../redux/todo/todo.action';
-import { selectItemToEdit } from '../../redux/todo/todo.selector';
+import { addItem, editItem } from './../../redux/todo/todo.action';
+import { closeInputField } from './../../redux/input/input.action';
+import { selectDisplayNewInput, selectDisplayEditInput, selectDisplayInputItem } from '../../redux/input/input.selector';
 
 import './todo-input.styles.scss';
 import { Card, Input } from 'antd';
 
-const TodoInput = ({addItem, editItem, closeInputField, itemToEdit, ...otherProps}) => {
+const TodoInput = ({addItem, editItem, closeInputField, displayNewInput, displayEditInput, displayInputItem, ...otherProps}) => {
   const todoId = () => {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
         var r = Math.random()*16|0, v = c === 'x' ? r : (r&0x3||0x8);
@@ -25,15 +26,15 @@ const TodoInput = ({addItem, editItem, closeInputField, itemToEdit, ...otherProp
   const {title} = todoItem;
 
   const onChange = value => {
-    if (itemToEdit.isEdit) {
-      setTodo({...todoItem, id: itemToEdit.id, title: value});
+    if (displayEditInput) {
+      setTodo({...todoItem, id: displayInputItem.id, title: value});
     } else {
       setTodo({...todoItem, id: todoId(), title: value});
     }
   };
 
   const onPressEnter = () => {
-    if (itemToEdit.isEdit) {
+    if (displayEditInput) {
       editItem(todoItem);
     } else {
       addItem(todoItem);
@@ -42,23 +43,28 @@ const TodoInput = ({addItem, editItem, closeInputField, itemToEdit, ...otherProp
     closeInputField();
   }
 
-  return (
-    <Card className='todo-input-container' bordered={false}>
-      <Input
-        className='todo-input-field'
-        placeholder="Create a todo item..."
-        value={title}
-        onChange={event => onChange(event.target.value)}
-        onPressEnter={onPressEnter}
-        autoFocus
-        {...otherProps}
-      />
-    </Card>
-  );
+  if (displayNewInput || displayEditInput) {
+    return (
+      <Card className='todo-input-container' bordered={false}>
+        <Input
+          className='todo-input-field'
+          placeholder="Write a todo item..."
+          value={title}
+          onChange={event => onChange(event.target.value)}
+          onPressEnter={onPressEnter}
+          autoFocus
+          {...otherProps}
+        />
+      </Card>
+    );
+  } else return null;
+
 }
 
 const mapStateToProps = createStructuredSelector({
-  itemToEdit: selectItemToEdit
+  displayNewInput: selectDisplayNewInput,
+  displayEditInput: selectDisplayEditInput,
+  displayInputItem: selectDisplayInputItem
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -68,4 +74,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoInput);
+
+// export default connect(mapStateToProps, mapDispatchToProps)(TodoInput);
 

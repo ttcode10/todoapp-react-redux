@@ -6,13 +6,3 @@ export const selectTodoItems = createSelector(
   [selectTodos],
   todo => todo.todoItems
 );
-
-export const selectDisplayInputField = createSelector(
-  [selectTodos],
-  todo => todo.isNew
-);
-
-export const selectItemToEdit = createSelector(
-  [selectTodoItems],
-  todoItems => todoItems.find(todoItem => todoItem.isEdit === true)
-);

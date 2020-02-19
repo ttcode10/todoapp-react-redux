@@ -1,43 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { createStructuredSelector } from 'reselect';
 
-import { tickTodoItem, deleteItem, triggerEditMode } from './../../redux/todo/todo.action';
-// import { selectTransformInputField } from './../../redux/todo/todo.selector';
+import { tickTodoItem, deleteItem } from './../../redux/todo/todo.action';
+import { fireEditInput } from './../../redux/input/input.action';
 
-import TodoInput from './../todo-input/todo-input.component';
 import { EditButton, DeleteButton } from './../button/button.component';
 import './todo-item.styles.scss';
 import { Card, Checkbox } from 'antd';
 
-const TodoItem = ({todo, tickTodoItem, deleteItem, triggerEditMode}) => {
+const TodoItem = ({ todo, tickTodoItem, deleteItem, fireEditInput, displayEditInput }) => {
   const textStyle = {
     textDecoration: 'line-through'
   };
 
-  if (todo.isEdit) {
-    return <TodoInput />
-  }
   return (
     <Card className='todo-item' bordered={false}>
       <Checkbox className='todo-item-checkbox' checked={todo.completed} onChange={() => tickTodoItem(todo)} />
       <p style={ todo.completed ? textStyle : null} >{todo.title}</p>
       <div className='todo-item-buttons'>
-        <EditButton onClick={() => triggerEditMode(todo)} />
+        <EditButton onClick={() => fireEditInput(todo)} />
         <DeleteButton onClick={() => deleteItem(todo)} />
       </div>
     </Card>
   );
 }
 
-// const mapStateToProps = createStructuredSelector({
-//   transformInputField: selectTransformInputField
-// })
-
 const mapDispatchToProps = dispatch => ({
   tickTodoItem: item => dispatch(tickTodoItem(item)),
   deleteItem: item => dispatch(deleteItem(item)),
-  triggerEditMode: item => dispatch(triggerEditMode(item))
+  fireEditInput: item => dispatch(fireEditInput(item))
 });
 
 export default connect(null, mapDispatchToProps)(TodoItem);

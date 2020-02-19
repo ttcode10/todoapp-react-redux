@@ -5,37 +5,14 @@ export const addItem = item => ({
   payload: item
 });
 
-export const  triggerEditMode = item => ({
-  type: TodoActionTypes.TRIGGER_EDIT_MODE,
-  payload: item
-})
-
 export const editItem = item => ({
   type: TodoActionTypes.EDIT_TODO_ITEM,
-  payload: item
-});
-
-export const triggerViewItem = item => ({
-  type: TodoActionTypes.TRIGGER_VIEW_MODE,
   payload: item
 });
 
 export const deleteItem = item => ({
   type: TodoActionTypes.DELETE_TODO_ITEM,
   payload: item
-});
-
-export const completeItem = item => ({
-  type: TodoActionTypes.COMPLETE_TODO_ITEM,
-  payload: item
-});
-
-export const fireInputField = () => ({
-  type: TodoActionTypes.FIRE_INPUT_FIELD,
-});
-
-export const closeInputField = () => ({
-  type: TodoActionTypes.CLOSE_INPUT_FIELD
 });
 
 export const tickTodoItem = item => ({

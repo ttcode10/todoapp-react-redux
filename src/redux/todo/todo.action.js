@@ -19,3 +19,8 @@ export const tickTodoItem = item => ({
   type: TodoActionTypes.TICK_TODO_ITEM,
   payload: item
 });
+
+export const fireSearch = keywords => ({
+  type: TodoActionTypes.FIRE_SEARCH,
+  payload: keywords
+});

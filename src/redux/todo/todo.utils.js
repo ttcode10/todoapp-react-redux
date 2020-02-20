@@ -11,3 +11,7 @@ export const editTodoItem = (todoItems, itemToEdit) => {
     return todoItems.map(todoItem => todoItem.id === itemToEdit.id ? {...todoItem, title: itemToEdit.title, completed: false} : todoItem);
   } return todoItems;
 }
+
+export const mapTodoItemsWithSearchKeywords = (todoItems, keywords) => {
+  return todoItems.filter(todoItem => todoItem.title.toLowerCase().includes(keywords.toLowerCase()));
+}

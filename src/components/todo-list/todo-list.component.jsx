@@ -26,7 +26,7 @@ const TodoList = ({ todoItems, displayInputItem, displayNewInput, displayEditInp
         todoItems.map(todo =>
           todo.id === displayInputItem.id ?
           <TodoInput displayEditInput={displayEditInput} key={displayInputItem.id} displayInputItem={displayInputItem} /> :
-          <TodoItem className='todo-card' key={todo.id} todo={todo} displayEditInput={displayEditInput} />)
+          <TodoItem className='todo-card' key={todo.id} todo={todo} />)
       }
     </div>
   );

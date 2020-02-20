@@ -11,11 +11,13 @@ const inputReducer = (state=INITIAL_STATE, action) => {
     case InputActionTypes.FIRE_NEW_INPUT:
       return {
         ...state,
-        isNew: true
+        isNew: true,
+        // isEdit: false,
       };
     case InputActionTypes.FIRE_EDIT_INPUT:
       return {
         ...state,
+        // isNew: false,
         isEdit: true,
         todoItem: action.payload
       }

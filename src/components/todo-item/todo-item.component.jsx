@@ -8,7 +8,7 @@ import { EditButton, DeleteButton } from './../button/button.component';
 import './todo-item.styles.scss';
 import { Card, Checkbox } from 'antd';
 
-const TodoItem = ({ todo, tickTodoItem, deleteItem, fireEditInput, displayEditInput }) => {
+const TodoItem = ({ todo, tickTodoItem, deleteItem, fireEditInput }) => {
   const textStyle = {
     textDecoration: 'line-through'
   };

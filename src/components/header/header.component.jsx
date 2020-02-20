@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <div className='header'>
       <div className='logo'>
-        <Link to='/'>
+        <Link to='/' onClick={() => window.location.reload()}>
           <Logo />
         </Link>
       </div>

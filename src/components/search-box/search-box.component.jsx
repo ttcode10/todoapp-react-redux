@@ -6,26 +6,6 @@ import { fireSearch } from './../../redux/todo/todo.action';
 
 import { Input } from 'antd';
 
-// class SearchBox extends React.Component {
-//   constructor(props) {
-//     super(props)
-
-//     this.state = {
-//       input: ''
-//     }
-//   }
-
-//   onChange = value => {
-//     this.setState({input: value}, () => this.props.fireSearch(this.state.input));
-//   }
-
-//   render() {
-//     return (
-//       <Search onChange={event => this.onChange(event.target.value)} />
-//     )
-//   }
-// }
-
 const SearchBox = ({fireSearch, ...otherProps}) => {
   const [searchInput, setSearchInput] = useState({
     input: ''

@@ -13,5 +13,8 @@ export const editTodoItem = (todoItems, itemToEdit) => {
 }
 
 export const mapTodoItemsWithSearchKeywords = (todoItems, keywords) => {
-  return todoItems.filter(todoItem => todoItem.title.toLowerCase().includes(keywords.toLowerCase()));
+  const filteredTodoItems = todoItems.map(item => item);
+  return filteredTodoItems.filter(todoItem => 
+    todoItem.title.toLowerCase().includes(keywords.toLowerCase())
+  );
 }

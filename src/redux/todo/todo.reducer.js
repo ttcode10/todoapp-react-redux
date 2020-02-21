@@ -1,11 +1,11 @@
 import TodoActionTypes from './todo.types';
 
 import TODO_DATA from './todo-list.data';
-import { tickTodoItem, editTodoItem, mapTodoItemsWithSearchKeywords } from './todo.utils';
+import { tickTodoItem, editTodoItem } from './todo.utils';
 
 const INITIAL_STATE = {
   todoItems: TODO_DATA,
-  keywords: ''
+  keywords: '',
 }
 
 const todoReducer = (state=INITIAL_STATE, action) => {
@@ -33,7 +33,7 @@ const todoReducer = (state=INITIAL_STATE, action) => {
     case TodoActionTypes.FIRE_SEARCH:
       return {
         ...state,
-        todoItems: mapTodoItemsWithSearchKeywords(state.todoItems, action.payload)
+        keywords: action.payload
       };
     default:
       return state;

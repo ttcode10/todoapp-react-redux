@@ -2,7 +2,14 @@ import { createSelector } from 'reselect';
 
 const selectTodos = state => state.todo;
 
-export const selectTodoItems = createSelector(
+const selectKeywords = createSelector(
   [selectTodos],
-  todo => todo.todoItems
+  todo => todo.keywords
+);
+
+export const selectTodoItems = createSelector(
+  [selectTodos, selectKeywords],
+  (todo, keywords) => todo.todoItems.filter(todoItem => 
+    todoItem.title.toLowerCase().includes(keywords.toLowerCase())
+  )
 );
